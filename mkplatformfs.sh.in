@@ -48,7 +48,7 @@ usage() {
     cat <<_EOF
 Usage: $PROGNAME [options] <platform> <base-tarball>
 
-Supported platforms: i686, x86_64, GCP, bananapi, beaglebone,
+Supported platforms: i686, x86_64, GCP, bananapi, orangepi, beaglebone,
                      cubieboard2, cubietruck, odroid-c2, odroid-u2,
                      rpi, rpi2 (armv7), rpi3 (aarch64), ci20,
                      pinebookpro, pinephone
@@ -112,20 +112,11 @@ check_tools
 # noarch though, so we strip off the -musl extention if it was
 # provided.
 case "$PLATFORM" in
-    bananapi*) PKGS="$BASEPKG ${PLATFORM%-*}-base" ;;
-    beaglebone*) PKGS="$BASEPKG ${PLATFORM%-*}-base" ;;
-    cubieboard2*|cubietruck*) PKGS="$BASEPKG ${PLATFORM%-*}-base" ;;
-    odroid-u2*) PKGS="$BASEPKG ${PLATFORM%-*}-base" ;;
+    bananapi*|orangepi*|beaglebone*|cubieboard2*|cubietruck*|pinebookpro*|pinephone*|GCP*|rpi*|ci20*|odroid-u2*) PKGS="$BASEPKG ${PLATFORM%-*}-base" ;;
     odroid-c2*) PKGS="$BASEPKG ${PLATFORM%-musl}-base" ;;
-    rpi3*) PKGS="$BASEPKG rpi-base" ;;
-    rpi2*) PKGS="$BASEPKG rpi-base" ;;
-    rpi*) PKGS="$BASEPKG ${PLATFORM%-*}-base" ;;
-    ci20*) PKGS="$BASEPKG ${PLATFORM%-*}-base" ;;
+    rpi2*|rpi3*) PKGS="$BASEPKG rpi-base" ;;
     i686*) PKGS="$BASEPKG" ;;
     x86_64*) PKGS="$BASEPKG" ;;
-    GCP*) PKGS="$BASEPKG ${PLATFORM%-*}-base" ;;
-    pinebookpro*) PKGS="$BASEPKG ${PLATFORM%-*}-base" ;;
-    pinephone*) PKGS="$BASEPKG ${PLATFORM%-*}-base" ;;
     *) die "$PROGNAME: invalid platform!";;
 esac
 

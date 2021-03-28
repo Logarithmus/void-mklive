@@ -143,7 +143,7 @@ fi
 
 # Be absolutely certain the platform is supported before continuing
 case "$PLATFORM" in
-    bananapi|beaglebone|cubieboard2|cubietruck|odroid-c2|odroid-u2|rpi|rpi2|rpi3|GCP|pinebookpro|pinephone|*-musl);;
+    bananapi|orangepi|beaglebone|cubieboard2|cubietruck|odroid-c2|odroid-u2|rpi|rpi2|rpi3|GCP|pinebookpro|pinephone|*-musl);;
     *) die "The $PLATFORM is not supported, exiting..."
 esac
 
@@ -273,7 +273,7 @@ sed -i "${ROOTFS}/etc/ssh/sshd_config" -e 's|^#\(PermitRootLogin\) .*|\1 yes|g'
 # can be found.
 info_msg "Configuring image for platform $PLATFORM"
 case "$PLATFORM" in
-bananapi*|cubieboard2*|cubietruck*)
+bananapi*|orangepi*|cubieboard2*|cubietruck*)
     dd if="${ROOTFS}/boot/u-boot-sunxi-with-spl.bin" of="${LOOPDEV}" bs=1024 seek=8 >/dev/null 2>&1
     ;;
 odroid-c2*)
